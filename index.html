@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Psychic Game</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<style>
+	
+	body {
+    background: salmon;
+    text-align: center;
+  	}
+
+    h2 {
+      color: #fff;
+      background: salmon;
+  	}
+
+  	h2   {
+    color: #fff;
+  	}
+
+    #title {
+      color: salmon;
+    }
+
+</style>
+</head>
+<body>
+
+	<div class="container">
+
+      <br><br>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="jumbotron" id="title">
+            <h1>The Psychic Game</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <h2>Guess what letter I'm thinking of...</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <h2>Wins: <span id="wins-text"><strong>0</strong></span></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <h2>Losses: <span id="losses-text"><strong>0</strong></span></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <h2>Guesses left: <span id="left-text"><strong>10</strong></span></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <h2>Your guesses so far: <span id="guesses-text"><strong>0</strong></span></h2>
+        </div>
+      </div>
+
+    </div>
+
+</body>
+
+<script>
+
+    var wins = 0;
+    var losses = 0;
+    var left = 10;
+
+	var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+  var userGuesses = [];
+
+  var computerGuess = (letters[Math.floor( Math.random() * letters.length)]);
+
+  console.log("computer guess: " + computerGuess);
+
+    var winsText = document.getElementById("wins-text");
+
+    var lossesText = document.getElementById("losses-text");
+
+    var leftText = document.getElementById("left-text");
+
+    var guessesText = document.getElementById("guesses-text");
+
+
+	 document.onkeyup = function(event) {
+      var userGuess = event.key;
+      console.log(userGuess);
+
+      userGuesses.push(userGuess);
+        console.log(userGuesses);
+
+      guessesText.textContent = userGuesses;
+
+      if (userGuess === computerGuess){
+        console.log("You guessed right");
+        wins++;
+        winsText.textContent = wins;
+        computerGuess = (letters[Math.floor( Math.random() * letters.length)]);
+        console.log("computer guess: " + computerGuess);
+        userGuesses = [];
+      }
+
+      else {
+        console.log("You guessed wrong");
+        left--; 
+        console.log(left);
+        leftText.textContent = left;
+
+      }
+
+      if (left === 0) {
+        losses++;
+        lossesText.textContent = losses;
+        computerGuess = (letters[Math.floor( Math.random() * letters.length)]);
+        console.log("computer guess: " + computerGuess);
+        left = 10;
+        userGuesses = [];
+      }
+
+  	}
+
+  
+
+  	// userText.textContent = userGuess;
+   //  computerText.textContent = computerGuess;
+
+   //  if (userGuess !== computerGuess) {
+
+   //  }
+
+
+   //  if (userGuess === computerGuess) {
+
+    
+   //  }
+</script>
+
+
+</html>
